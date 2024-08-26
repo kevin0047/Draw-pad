@@ -2,6 +2,7 @@
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace Draw_pad
@@ -11,8 +12,10 @@ namespace Draw_pad
         private bool isDrawing; 
         private string whatPen = "pen";
         private Polyline currentLine; // 타입 뒤에 ?을 붙이면 널값을 가질수 있음을 나타냄
+        private double penPixel = 2; // 초기 펜 굵기
 
-        public MainWindow()
+
+    public MainWindow()
         {
             InitializeComponent();
             currentLine = new Polyline();//널값으로 인한 경고 방지
@@ -26,7 +29,7 @@ namespace Draw_pad
                 isDrawing = true;
                 currentLine = new Polyline //선
                 {
-                    StrokeThickness = 2//strokethickness 선의 두께 ;
+                    StrokeThickness = penPixel//strokethickness 선의 두께 ;
                 };
                 if (whatPen=="pen")
                 {
@@ -70,12 +73,26 @@ namespace Draw_pad
             PenButton.IsChecked = true;
             whatPen = "pen";
             EraserButton.IsChecked = false;
-    }
+        }
         private void EraserButton_Click(object sender, RoutedEventArgs e)
         {
             EraserButton.IsChecked = true;
             whatPen = "eraser";
             PenButton.IsChecked = false;
         }
+        private void PixelSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+           
+            if (PixelValueTextBlock == null)
+            {
+                MessageBox.Show("PixelValueTextBlock이 null입니다.");
+                return;
+            }
+            penPixel = PixelSlider.Value; // 슬라이더 값을 펜 굵기 값으로 설정
+            PixelValueTextBlock.Text = $"펜 굵기: {(int)penPixel}"; // 텍스트 블록 업데이트
+
+        }
+
     }
+
 }

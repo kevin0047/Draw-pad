@@ -5,14 +5,32 @@
     <Grid>
         <Canvas Name="paintCanvas" Background="White" MouseDown="Canvas_MouseDown" 
                 MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp">
-           
+
+
+
         </Canvas>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+            
             <Button Name="ClearButton" Content="초기화" Click="ClearButton_Click" Margin="10"/>
             <ToggleButton Name="PenButton" Content="펜" Click="PenButton_Click" Margin="10"/>
             <ToggleButton Name="EraserButton" Content="지우개" Click="EraserButton_Click" Margin="10"/>
-        </StackPanel>
 
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Slider x:Name="PixelSlider" Minimum="1" Maximum="248"  Margin="20,170,0,0"
+                    ValueChanged="PixelSlider_ValueChanged" Width="121">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="270"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+            <TextBlock Name="PixelValueTextBlock" Text="펜 굵기: 2" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
+        
     </Grid>
 </Window>
