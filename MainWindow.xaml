@@ -1,13 +1,18 @@
-﻿<Window x:Class="Draw_pad.MainWindow"
+﻿<Window x:Class="Draw_pad.MainWindow" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Simple Paint App" Height="450" Width="800">
     <Grid>
         <Canvas Name="paintCanvas" Background="White" MouseDown="Canvas_MouseDown" 
-                MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp"/>
+                MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp">
+           
+        </Canvas>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Button Name="ClearButton" Content="Clear" Click="ClearButton_Click" Margin="10"/>
+            <Button Name="ClearButton" Content="초기화" Click="ClearButton_Click" Margin="10"/>
+            <ToggleButton Name="PenButton" Content="펜" Click="PenButton_Click" Margin="10"/>
+            <ToggleButton Name="EraserButton" Content="지우개" Click="EraserButton_Click" Margin="10"/>
         </StackPanel>
+
     </Grid>
 </Window>
